@@ -10,7 +10,10 @@ import { stderr, stdout } from "process"
 const app = express()
 
 //multer middleware
-
+const uploadPath = "./uploads"
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath)
+}
 const storage = multer.diskStorage({
   destination: function(req, file, cb){
     cb(null, "./uploads")
